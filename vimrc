@@ -38,6 +38,7 @@
 "    -> Spell checking
 "    -> Misc
 "    -> Helper functions
+"    -> Plugins configs
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -406,8 +407,12 @@ endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Neocomplete
+" => Plugins configs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""
+" Neocomplete
+"""""""""""""""""
 " start neocomplete at start up
 let g:neocomplete#enable_at_startup = 1
 
