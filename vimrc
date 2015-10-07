@@ -411,6 +411,14 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""
+" ctags
+"""""""""""""""""
+" set finding path for ctag
+" It tells Vim to look for a tags file in the directory of the current file, 
+" in the current directory and up all the way until $HOME
+set tags=./tags,tags;$HOME
+
+"""""""""""""""""
 " Neocomplete
 """""""""""""""""
 " start neocomplete at start up
