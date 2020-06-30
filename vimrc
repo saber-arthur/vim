@@ -50,7 +50,6 @@
 set history=700
 
 " Enable filetype plugins
-filetype plugin on
 filetype indent on
 
 set statusline+=col:\ %c
@@ -163,22 +162,24 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
-set expandtab
 
 " Be smart when using tabs ;)
 set smarttab
 
 " 1 tab == 4 spaces
-set shiftwidth=2
 set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+
+" Use spaces instead of tabs
+set expandtab
 
 " Linebreak on 500 characters
 set lbr
 set tw=500
 
-set ai "Auto indent
-set si "Smart indent
+"set ai "Auto indent
+"set si "Smart indent
 
 "set wrap "Wrap lines
 
@@ -407,6 +408,12 @@ endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" go fmt on close
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufWritePost *.go !gofmt -w %
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins configs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -424,4 +431,25 @@ set tags=./tags,tags;$HOME
 " start neocomplete at start up
 let g:neocomplete#enable_at_startup = 1
 
+
+" This will highlight .gsql files
+au BufRead,BufNewFile *.gsql set filetype=gsql
+au! Syntax gsql source $VIM/syntax/gsql.vim
+" turn syntax on
+syntax on
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Automatically set paste mode in Vim when pasting in insert mode
+" source: https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
